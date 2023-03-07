@@ -1,0 +1,1 @@
+const inputClient = document.querySelector('#input-client')
