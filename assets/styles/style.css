@@ -9,6 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: rgb(1, 1, 54);
 }
 
 .clientList {
@@ -24,18 +25,26 @@ body {
   color: #ffffff;
   font-size: 1.3em;
 }
-.clientList ul.list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.clientList ul.list li {
+.clientList #table {
+  width: 100%;
   background-color: darkcyan;
   border-bottom: 1px solid red;
   color: white;
   padding: 15px;
 }
-.clientList footer input {
+.clientList #table th {
+  border: 1px solid black;
+  padding: 10px;
+}
+.clientList #table td {
+  border: 1px solid black;
+  padding: 10px;
+}
+.clientList #table td:last-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+.clientList footer button {
   width: 100%;
   padding: 15px;
   border-bottom-right-radius: 4px;
@@ -45,4 +54,32 @@ body {
   outline: none;
   color: white;
   font-size: 1.2em;
+  cursor: pointer;
+}
+.clientList #modal {
+  display: none;
+}
+.clientList #modal table input {
+  width: 100%;
+  padding: 5px;
+  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: darkgrey;
+  border: none;
+  outline: none;
+  color: white;
+}
+.clientList #modal table .button {
+  border: none;
+}
+.clientList #modal table button {
+  width: 100%;
+  padding: 5px;
+  background-color: darkgrey;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
 }/*# sourceMappingURL=style.css.map */

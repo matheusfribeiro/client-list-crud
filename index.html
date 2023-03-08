@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Client List - CRUD</title>
   <link rel="stylesheet" href="assets/styles/style.css">
+  <script src="https://kit.fontawesome.com/14a00b7b5b.js" crossorigin="anonymous"></script>
 </head>
 <body>
   
@@ -13,14 +14,49 @@
     <header>Clients List</header>
 
     <section class="wrapper-list">
-      <ul id="list" class="list">
-        <li>John Doe - TM</li>
-        <li>Jane Doe - HT</li>
-        <li>Edward Norton - FC</li>
-      </ul>
+      <table id="table">
+        <tr>
+          <th>Company</th>
+          <th>Contact</th>
+          <th>Country</th>
+          <th>Edit | Delete</th>
+        </tr>
+        <tr>
+          <td>Alfreds Futterkiste</td>
+          <td>Maria Anders</td>
+          <td>Germany</td>
+          <td><i id="editButton" class="fa-solid fa-pen"></i><i id="deleteButton" class="fa-solid fa-trash"></i></td>
+          
+        </tr>
+        <tr>
+          <td>Centro comercial Moctezuma</td>
+          <td>Francisco Chang</td>
+          <td>Mexico</td>
+          <td><i id="editButton" class="fa-solid fa-pen"></i><i id="deleteButton" class="fa-solid fa-trash"></i></td>
+        </tr>
+      </table>
       <footer>
-        <input id="input-client" placeholder="Add something..." type="text">
+        <button id="addButton">Add New Client</button>
       </footer>
+
+      <section id="modal">
+        <table id="table">
+          <tr>
+            <th>Company</th>
+            <th>Contact</th>
+            <th>Country</th>
+            
+          </tr>
+          <tr>
+
+            <td><input type="text" id=""></td>
+            <td><input type="text" id=""></td>
+            <td><input type="text" id=""></td>
+            <td class="button"><button>SAVE</button></td>
+            
+          </tr>
+        </table>
+      </section>
       
     </section>
 
