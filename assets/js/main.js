@@ -1,5 +1,6 @@
 const addButton = document.querySelector('#addButton')
+const modal = document.querySelector('#modal')
 
 addButton.addEventListener('click', () => {
-  alert('test for echo')
+  modal.style.display = 'block'
 })
