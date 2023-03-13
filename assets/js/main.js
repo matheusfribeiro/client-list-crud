@@ -5,7 +5,9 @@ const table = document.querySelector('#table')
 const companyInput = document.querySelector('#companyName')
 const contactInput = document.querySelector('#contactName')
 const countryInput = document.querySelector('#countryName')
-let inputs = document.querySelectorAll('input')
+const inputs = document.querySelectorAll('input')
+const deleteButton = document.querySelector('#deleteButton')
+
 
 addButton.addEventListener('click', () => {
   modal.style.display = 'block'
@@ -19,11 +21,15 @@ window.onclick = function(event) {
   }
 }
 
+
+
 let clients = [
   
 ]
 
+
 saveButton.addEventListener('click', () => {
+
   companyName = companyInput.value
   contactName = contactInput.value
   countryName = countryInput.value
@@ -36,7 +42,6 @@ saveButton.addEventListener('click', () => {
 
   clients.push(addClient)
   
-  console.log(clients)
 
   table.innerHTML = `
       <tr>
@@ -64,34 +69,11 @@ saveButton.addEventListener('click', () => {
   modal.style.display = "none";
 
   
-
+  console.log(displayClients)
 })
 
 
+displayClients.forEach(client => {
+  
+})
 
-
-
-
-
-
-
-
-
-
-/*
-{
-    company: 'Fight Club', 
-    contact: 'Edward Norton', 
-    country: 'EUA'
-  },
-  {
-    company: 'The machinist', 
-    contact: 'Christian bale', 
-    country: 'England'
-  },
-  {
-    company: 'The revenant', 
-    contact: 'Tom hardy', 
-    country: 'Scotland'
-  }
-*/

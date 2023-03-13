@@ -49,6 +49,10 @@ body {
       display: flex;
       justify-content: space-evenly;
     }
+
+    #deleteButton {
+      cursor: pointer;
+    }
   }
 
   footer {
