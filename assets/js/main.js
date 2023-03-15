@@ -5,24 +5,36 @@ const Main = {
     this.cacheSelectors()
     this.bindEvents()
     
+    
   },
 
   cacheSelectors: function () {
     this.addButton = document.querySelector('#addButton')
     this.modal = document.querySelector('#modal')
     this.saveButton = document.querySelector('#saveButton')
-    this.table = document.querySelector('#table')
+    this.tbody = document.querySelector('#tbody')
     this.companyInput = document.querySelector('#companyName')
     this.contactInput = document.querySelector('#contactName')
     this.countryInput = document.querySelector('#countryName')
     this.inputs = document.querySelectorAll('input')
+    this.removeButtons = document.querySelectorAll('#deleteButton')
     this.clients = []
   },
 
+
+
   bindEvents: function () {
+    const self = this
+
     this.addButton.addEventListener('click', this.Events.addButton_click.bind(this))
+
     window.onclick = this.Events.closeModal_click
+
     this.saveButton.addEventListener('click', this.Events.saveClient_click.bind(this))
+
+    this.removeButtons.forEach(function(button) {
+      button.onclick = self.Events.removeButton_click
+    })
   },
 
 
@@ -40,30 +52,56 @@ const Main = {
       }
     },
 
-    
-
     saveClient_click: function () {
-      
+      const clientsScoped = this.clients
       
       companyName = this.companyInput.value
       contactName = this.contactInput.value
       countryName = this.countryInput.value
 
-      /*
       const addClient = {
-        id: (clients.length + 1),
+        id: (clientsScoped.length + 1),
         company: companyName,
         contact: contactName,
         country: countryName
       }
 
-      clients.push(addClient)
-      */
-      console.log(this.clients)
-      modal.style.display = "none";
+      if (companyName && contactName && countryName) {
+        clientsScoped.push(addClient)
+        modal.style.display = "none";
+      } else {
+        alert('All fields are required')
+      }
+      
+      this.displayClients()
+    
+    },
 
+    removeButton_click: function () {
+      alert('test for echo')
     }
-  }
+  },
+
+  displayClients: function () {
+    clientsScoped = this.clients
+    this.tbody.innerHTML = null
+    
+
+    clientsScoped.map((client) => {
+      this.tbody.innerHTML += `
+        <tr>
+          <td>${client.id}</td>
+          <td>${client.company}</td>
+          <td>${client.contact}</td>
+          <td>${client.country}</td>
+          <td><i id="editButton" class="fa-solid fa-pen"></i><i id="deleteButton" class="fa-solid fa-trash"></i></td>
+        </tr>
+      `
+      console.log(clientsScoped)
+      this.cacheSelectors()
+      this.bindEvents()
+    }).join('')
+  },
 
 
 }
@@ -73,81 +111,16 @@ Main.init()
 /*
 
 
+this.table.innerHTML +=  `
 
-
-addButton.addEventListener('click', () => {
-  this.inputs.forEach(input => input.value = '')
-})
-
-// when user clicks outside de modal, it closes
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-
-
-
-function displayClients () {
-  table.innerHTML = `
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Company</th>
-          <th>Contact</th>
-          <th>Country</th>
-          <th>Edit | Delete</th>
-        </tr>
-        <thead>  
-      `
-  var setClients = clients.map((client, i) => {
-    return `
-          
-      <tbody>
-        <tr>
-          <td>${client.id}</td>
-          <td>${client.company}</td>
-          <td>${client.contact}</td>
-          <td>${client.country}</td>
-          <td><i id="editButton" class="fa-solid fa-pen"></i><i id="deleteButton" class="fa-solid fa-trash"></i></td>
-        </tr>
-      </tbody>
-    `
-    
-  })
-
-  table.innerHTML += setClients.join("")
-  modal.style.display = "none";
-}
-
-
-let clients = [
-  
-]
-
-saveButton.addEventListener('click', saveClient) 
-
-function saveClient() {
-  
-
-  companyName = companyInput.value
-  contactName = contactInput.value
-  countryName = countryInput.value
-
-  const addClient = {
-    id: (clients.length + 1),
-    company: companyName,
-    contact: contactName,
-    country: countryName
-  }
-
-  clients.push(addClient)
-  
-  displayClients()
-
-  
-}
-
+            <tr>
+              <td>1</td>
+              <td>${client.company}</td>
+              <td>${client.contact}</td>
+              <td>${client.country}</td>
+              <td><i id="editButton" class="fa-solid fa-pen"></i><i id="deleteButton" class="fa-solid fa-trash"></i></td>
+            </tr>
+          `
 
 /////////
 

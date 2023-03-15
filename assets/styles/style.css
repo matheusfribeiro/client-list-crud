@@ -25,26 +25,26 @@ body {
   color: #ffffff;
   font-size: 1.3em;
 }
-.clientList #table {
+.clientList table {
   width: 100%;
   background-color: darkcyan;
   border-bottom: 1px solid red;
   color: white;
   padding: 15px;
 }
-.clientList #table th {
+.clientList table th {
   border: 1px solid black;
   padding: 10px;
 }
-.clientList #table td {
+.clientList table td {
   border: 1px solid black;
   padding: 10px;
 }
-.clientList #table td:last-child {
+.clientList table td:last-child {
   display: flex;
   justify-content: space-evenly;
 }
-.clientList #table #deleteButton {
+.clientList table #deleteButton {
   cursor: pointer;
 }
 .clientList footer button {
