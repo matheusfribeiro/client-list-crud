@@ -18,8 +18,9 @@ const Main = {
     this.contactInput = document.querySelector('#contactName')
     this.countryInput = document.querySelector('#countryName')
     this.inputs = document.querySelectorAll('input')
-    //this.removeButtons = document.querySelectorAll('.fa-trash')
     this.clients = []
+    this.editId = null
+    this.id = 1
   },
 
 
@@ -33,11 +34,6 @@ const Main = {
 
     this.saveButton.addEventListener('click', this.Events.saveClient_click.bind(this))
 
-    /*
-    this.removeButtons.forEach(function(button) {
-      button.onclick = self.Events.removeButton_click
-    })
-    */
   },
 
 
@@ -57,25 +53,30 @@ const Main = {
 
     saveClient_click: function () {
       const clientsScoped = this.clients
-      let id = crypto.randomUUID()
-      
-      
       
       companyName = this.companyInput.value
       contactName = this.contactInput.value
       countryName = this.countryInput.value
 
       const addClient = {
-        id: clientsScoped.length + 1,
+        id: Main.id,
         company: companyName,
         contact: contactName,
         country: countryName
       }
 
       if (companyName && contactName && countryName) {
-        clientsScoped.push(addClient)
-        modal.style.display = "none";
-        this.displayClients()
+        if (this.editId == null) {
+
+          clientsScoped.push(addClient)
+          Main.id++
+          modal.style.display = "none";
+          this.displayClients()
+        } else {
+          this.Events.editUpdate(this.editId, addClient)
+          modal.style.display = "none"
+        }
+        
       } else {
         alert('All fields are required')
       }
@@ -86,7 +87,6 @@ const Main = {
 
     removeButton_click: function (id) {
       clientsScoped = Main.clients
-      console.log(tablebody)
 
       
       for ( let i = 0; i < clientsScoped.length; i++) {
@@ -99,16 +99,40 @@ const Main = {
     },
     
     editButton_click: function (data) {
+      Main.editId = data.id
+      //console.log(this.editId)
       Main.inputs.forEach(input => {
         input.value = ''
       })
       modal.style.display = "block";
       Main.companyInput.value = data.company
       Main.contactInput.value = data.contact
-      Main.countryInput.value = data.company
+      Main.countryInput.value = data.country
+
+      let btn = Main.saveButton
+
+      btn.innerText = 'UPDATE'
     },
 
-    editUpdate: function () {
+    editUpdate: function (id, addClient) {
+      clientsScoped = Main.clients
+      console.log(addClient, id)
+      
+
+      for (let i = 0; i < clientsScoped.length; i++) {
+        if(clientsScoped[i].id == id) { 
+          
+        
+          clientsScoped[i].company = addClient.company
+          clientsScoped[i].contact = addClient.contact
+          clientsScoped[i].country = addClient.country
+        
+        }
+      }
+      Main.saveButton.innerText = 'SAVE'
+      Main.editId = null
+      Main.displayClients()
+      console.log(clientsScoped)
       
     }
   },
@@ -145,8 +169,6 @@ const Main = {
       td_actions.appendChild(imgEdit)
       td_actions.appendChild(imgDelete)
       
-      console.log(clientsScoped)
-      
       
     }
   },
@@ -155,57 +177,4 @@ const Main = {
 }
 
 Main.init()
-
-/*
-
-
-this.table.innerHTML +=  `
-
-            <tr>
-              <td>1</td>
-              <td>${client.company}</td>
-              <td>${client.contact}</td>
-              <td>${client.country}</td>
-              <td><i id="editButton" class="fa-solid fa-pen"></i><i id="deleteButton" class="fa-solid fa-trash"></i></td>
-            </tr>
-          `
-
-/////////
-
-var deleteButton = document.querySelectorAll('#deleteButton');
-  deleteButton.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      const id = Number(e.target.parentElement.parentElement.firstChild.nextSibling.innerHTML)
-      
-      const clientsFiltered = clients.filter((client) => {
-        if (client.id !== id) {
-          return true
-        }
-      })
-
-      table.innerHTML = `
-      <tr>
-        <th>ID</th>
-        <th>Company</th>
-        <th>Contact</th>
-        <th>Country</th>
-        <th>Edit | Delete</th>
-      </tr>
-      `
-
-      var displayFiltered = clientsFiltered.map((client) => {
-        return `
-          <tr>
-            <td>${client.id}</td>
-            <td>${client.company}</td>
-            <td>${client.contact}</td>
-            <td>${client.country}</td>
-            <td><i id="editButton" class="fa-solid fa-pen"></i><i id="deleteButton" class="fa-solid fa-trash"></i></td>
-          </tr>
-        `
-      })
-      table.innerHTML += displayFiltered.join("")
-    })
-  })
-*/
 
