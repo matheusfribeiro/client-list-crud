@@ -4,9 +4,6 @@ const Main = {
   init: function () {
     this.cacheSelectors()
     this.bindEvents()
-    
-    
-    
   },
 
   cacheSelectors: function () {
@@ -23,8 +20,6 @@ const Main = {
     this.id = 1
   },
 
-
-
   bindEvents: function () {
     const self = this
 
@@ -35,7 +30,6 @@ const Main = {
     this.saveButton.addEventListener('click', this.Events.saveClient_click.bind(this))
 
   },
-
 
   Events: {
     addButton_click:function () {
@@ -81,14 +75,11 @@ const Main = {
         alert('All fields are required')
       }
       
-      
-    
     },
 
     removeButton_click: function (id) {
       clientsScoped = Main.clients
 
-      
       for ( let i = 0; i < clientsScoped.length; i++) {
         if (clientsScoped[i].id == id) {
           clientsScoped.splice(i, 1)
@@ -117,11 +108,9 @@ const Main = {
     editUpdate: function (id, addClient) {
       clientsScoped = Main.clients
       console.log(addClient, id)
-      
 
       for (let i = 0; i < clientsScoped.length; i++) {
         if(clientsScoped[i].id == id) { 
-          
         
           clientsScoped[i].company = addClient.company
           clientsScoped[i].contact = addClient.contact
@@ -136,7 +125,6 @@ const Main = {
       
     }
   },
-
 
   displayClients: function () {
     clientsScoped = this.clients
@@ -161,7 +149,6 @@ const Main = {
       imgEdit.setAttribute("class", "fa-solid fa-pen")
       imgEdit.setAttribute("onclick", `Main.Events.editButton_click(${JSON.stringify(clientsScoped[i])})`)
       
-      
       let imgDelete = document.createElement("i")
       imgDelete.setAttribute("class", "fa-solid fa-trash")
       imgDelete.setAttribute("onclick", `Main.Events.removeButton_click(${clientsScoped[i].id})`)
@@ -169,12 +156,9 @@ const Main = {
       td_actions.appendChild(imgEdit)
       td_actions.appendChild(imgDelete)
       
-      
     }
   },
-
 
 }
 
 Main.init()
-
