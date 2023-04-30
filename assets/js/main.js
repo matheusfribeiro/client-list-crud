@@ -24,11 +24,8 @@ const Main = {
     const self = this
 
     this.addButton.addEventListener('click', this.Events.addButton_click.bind(this))
-
     window.onclick = this.Events.closeModal_click
-
     this.saveButton.addEventListener('click', this.Events.saveClient_click.bind(this))
-
   },
 
   Events: {
@@ -61,7 +58,6 @@ const Main = {
 
       if (companyName && contactName && countryName) {
         if (this.editId == null) {
-
           clientsScoped.push(addClient)
           Main.id++
           modal.style.display = "none";
@@ -69,12 +65,10 @@ const Main = {
         } else {
           this.Events.editUpdate(this.editId, addClient)
           modal.style.display = "none"
-        }
-        
+        }  
       } else {
         alert('All fields are required')
       }
-      
     },
 
     removeButton_click: function (id) {
@@ -86,7 +80,6 @@ const Main = {
           tablebody.deleteRow(i)
         }
       }
-      
     },
     
     editButton_click: function (data) {
@@ -101,7 +94,6 @@ const Main = {
       Main.countryInput.value = data.country
 
       let btn = Main.saveButton
-
       btn.innerText = 'UPDATE'
     },
 
@@ -111,18 +103,15 @@ const Main = {
 
       for (let i = 0; i < clientsScoped.length; i++) {
         if(clientsScoped[i].id == id) { 
-        
           clientsScoped[i].company = addClient.company
           clientsScoped[i].contact = addClient.contact
           clientsScoped[i].country = addClient.country
-        
         }
       }
       Main.saveButton.innerText = 'SAVE'
       Main.editId = null
       Main.displayClients()
       console.log(clientsScoped)
-      
     }
   },
 
@@ -155,10 +144,8 @@ const Main = {
       
       td_actions.appendChild(imgEdit)
       td_actions.appendChild(imgDelete)
-      
     }
   },
-
 }
 
 Main.init()
