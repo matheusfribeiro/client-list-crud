@@ -1,5 +1,3 @@
-
-
 const Main = {
   init: function () {
     this.cacheSelectors()
